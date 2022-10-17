@@ -10,10 +10,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 require "config.php";
 
-$sql = "INSERT INTO plannedgames (game, time, host, players)
-VALUES ('$game', '$time', '$host', '$players')";
+echo $players;
+
+$sql = "INSERT INTO plannedgames (gameid, time)
+VALUES ('$game', '$time')";
 
 $conn->exec($sql);
-echo "New record created successfully";
-header("refresh:1;url=main.html");
+
+$plannedgameid = $conn->lastInsertId();
+
+foreach ($players as $player) {
+    if ($host == $player) {
+        $sql = "INSERT INTO plannedusers (plannedgameid, userid, is_host)
+        VALUES ('$plannedgameid', '$player', 1)";
+    } else {
+        $sql = "INSERT INTO plannedusers (plannedgameid, userid, is_host)
+        VALUES ('$plannedgameid', '$player', 0)";
+    }
+    $conn->exec($sql);
+}
+    
+echo "Nieuwe game ingepland op $time";
+#header("refresh:1;url=main.html");
 ?>

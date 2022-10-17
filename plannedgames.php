@@ -30,7 +30,18 @@
                     <td class="naam"> <?= $results['name'];?> </td>
                     <td> <?= $row['time'];?> </td>
                     <td> <?= $results['play_minutes'] . " minuten";?> </td>
-                    <td> <?= $row['host'];?> </td>
+                    <td> <?php $gamingid = $row["id"];
+                    $sql3 = "SELECT * FROM plannedusers WHERE plannedgameid = $gamingid;";
+                    foreach ($conn->query($sql3) as $test) {
+                        if ($test['is_host']) {
+                            $userid = $test['userid'];
+                            $sql4 = "SELECT * FROM users WHERE id = $userid";
+                            $resulting = $conn->query($sql4);
+                            $resultss = $resulting->fetch(PDO::FETCH_ASSOC);
+                            echo $resultss['name'];
+                        }
+                    }?> 
+                    </td>
                 </tr>
 
             <?php } ?>
