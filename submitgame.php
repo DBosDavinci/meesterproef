@@ -5,12 +5,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = date_create($_POST['datum'] . $_POST['tijd']);
     $time = date_format($date, "Y/m/d H:i:s");
     $host = $_POST['host'];
-    $players = $_POST['players'];
+    for ($i = 0; $i < count($_POST['id']); $i++) {
+        $players[$i] = $_POST['players'][$i];
+    }
 }
 
 require "config.php";
 
-echo $players;
+print_r($players);
 
 $sql = "INSERT INTO plannedgames (gameid, time)
 VALUES ('$game', '$time')";

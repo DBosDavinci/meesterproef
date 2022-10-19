@@ -5,7 +5,7 @@
    <BODY>
         <form action="submitgame.php" method="post">
             <label for="game">Game:</label>
-            <select name="game" id="game-select">
+            <select name="game">
                 <?php
 
                 $pdo = require "config.php";
@@ -25,7 +25,7 @@
             <input type="time" id="tijd" name="tijd"><br>
 
             <label for="host">Persoon die het spel uitlegt:</label>
-            <select name="host" id="host-select">
+            <select name="host">
                 <?php
 
                 $sql = "SELECT name,id FROM users ORDER BY name";
@@ -37,7 +37,9 @@
             </select><br>
 
             <label for="players">Personen die meedoen:</label>
-            <select name="players" id="players-select">
+
+            <input type="hidden" name="id[]">
+            <select name="players[]">
                 <?php
 
                 $sql = "SELECT name,id FROM users ORDER BY name";
@@ -47,7 +49,9 @@
 
                 <?php } ?>
             </select>
-            <select name="players" id="players-select">
+
+            <input type="hidden" name="id[]">
+            <select name="players[]">
                 <?php
 
                 $sql = "SELECT name,id FROM users ORDER BY name";
