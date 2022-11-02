@@ -42,6 +42,8 @@
                         }
                     }?> 
                     </td>
+                    <td><a href="editgame.php?id=<?=$row['id']?>">edit</a></td>
+                    <td><a href="removegame.php?id=<?=$row['id']?>">remove</a></td>
                 </tr>
 
             <?php } ?>

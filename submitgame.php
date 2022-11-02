@@ -33,5 +33,5 @@ foreach ($players as $player) {
 }
     
 echo "Nieuwe game ingepland op $time";
-#header("refresh:1;url=main.html");
+header("refresh:1;url=main.html");
 ?>
