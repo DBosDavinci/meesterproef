@@ -12,8 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 require "config.php";
 
-print_r($players);
-
 $sql = "INSERT INTO plannedgames (gameid, time)
 VALUES ('$game', '$time')";
 

@@ -37,29 +37,18 @@
             </select><br>
 
             <label for="players">Personen die meedoen:</label>
+            <?php
 
-            <input type="hidden" name="id[]">
-            <select name="players[]">
-                <?php
-
-                $sql = "SELECT name,id FROM users ORDER BY name";
-
-                foreach ($conn->query($sql) as $row) {?>
-                    <option value="<?= $row["id"]?>"> <?=$row["name"]?> </option>
-
-                <?php } ?>
-            </select>
-
-            <input type="hidden" name="id[]">
-            <select name="players[]">
-                <?php
-
-                $sql = "SELECT name,id FROM users ORDER BY name";
-
-                foreach ($conn->query($sql) as $row) {?>
-                    <option value="<?= $row["id"]?>"> <?=$row["name"]?> </option>
-
-                <?php } ?>
+            $sql = "SELECT name,id FROM users ORDER BY name";
+            
+            foreach ($conn->query($sql) as $row) {?>
+                <input type="hidden" name="id[]">
+                <select name="players[]">
+                    <?php
+                    foreach ($conn->query($sql) as $row) {?>
+                        <option value="<?= $row["id"]?>"> <?=$row["name"]?> </option>
+                    <?php }
+            } ?>
             </select><br>
 
             <input type="submit">

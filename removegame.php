@@ -11,5 +11,5 @@ $conn->query($sql);
 $conn->query($sql2);
 
 echo "Game verwijderd";
-header("refresh:1;url=main.html");
+header("refresh:1;url=gameplanner.php");
 ?>
