@@ -26,6 +26,7 @@
 
             <label for="host">Persoon die het spel uitlegt:</label>
             <select name="host">
+                <option value="" disabled selected hidden>Selecteer een host</option>
                 <?php
 
                 $sql = "SELECT name,id FROM users ORDER BY name";
@@ -35,21 +36,39 @@
 
                 <?php } ?>
             </select><br>
-
+            
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <label for="players">Personen die meedoen:</label>
             <?php
 
             $sql = "SELECT name,id FROM users ORDER BY name";
             
-            foreach ($conn->query($sql) as $row) {?>
+            for ($x = 1; $x <= 2; $x++) {?>
                 <input type="hidden" name="id[]">
-                <select name="players[]">
+                <select name="players[]" class="drop">
+                    <option value="" disabled selected hidden>Selecteer een speler</option>
                     <?php
                     foreach ($conn->query($sql) as $row) {?>
                         <option value="<?= $row["id"]?>"> <?=$row["name"]?> </option>
                     <?php }
             } ?>
             </select><br>
+
+            <script>
+                var $drops = $('.drop');
+
+                $drops.change(function () {
+                  $drops.find("option").show();
+                  $drops.each(function(index, el) {
+                    var val = $(el).val();
+                    if (val) {
+                     var $other = $drops.not(this);
+                     $other.find("option[value=" + $(el).val() + "]").hide();
+                    }
+                  });
+                });
+            </script>
 
             <input type="submit">
         </form>
