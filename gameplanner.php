@@ -1,7 +1,9 @@
 <!DOCTYPE HTML PUBLIC>
 <HTML>
    <HEAD>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
    </HEAD>
+   
    <BODY>
         <form action="submitgame.php" method="post">
             <label for="game">Game:</label>
@@ -18,11 +20,14 @@
                 <?php } ?>
             </select><br>
 
+
             <label for="datum">Datum:</label>
             <input type="date" id="datum" name="datum"><br>
 
+
             <label for="tijd">Tijd:</label>
             <input type="time" id="tijd" name="tijd"><br>
+
 
             <label for="host">Persoon die het spel uitlegt:</label>
             <select name="host">
@@ -37,11 +42,10 @@
                 <?php } ?>
             </select><br>
             
-            
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            <label for="players">Personen die meedoen:</label>
-            <?php
 
+            <label for="players">Personen die meedoen:</label>
+
+            <?php
             $sql = "SELECT name,id FROM users ORDER BY name";
             
             for ($x = 1; $x <= 2; $x++) {?>
@@ -54,6 +58,7 @@
                     <?php }
             } ?>
             </select><br>
+
 
             <script>
                 var $drops = $('.drop');
@@ -69,6 +74,7 @@
                   });
                 });
             </script>
+
 
             <input type="submit">
         </form>

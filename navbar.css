@@ -1,0 +1,12 @@
+.topnav {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.link {
+    padding: 5px;
+}
+
+ul li {
+    display: inline;
+}
