@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC>
 <HTML>
    <HEAD>
+   <?php include_once("navbar.php"); ?>
    <link rel="stylesheet" href="style.css">
    </HEAD>
    <BODY>

@@ -1,10 +1,13 @@
 <!DOCTYPE HTML PUBLIC>
 <HTML>
    <HEAD>
+        <?php include_once("navbar.php"); ?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
    </HEAD>
    
    <BODY>
+        <h1>Game Planner</h1>
+        <br>
         <form action="submitgame.php" method="post">
             <label for="game">Game:</label>
             <select name="game">

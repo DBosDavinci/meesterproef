@@ -1,12 +1,22 @@
-.topnav {
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: gray;
     border-style: solid;
-    border-width: 1px;
+    border-width: 3px;
+    }
+    
+    li {
+        float: left;
 }
 
 .link {
-    padding: 5px;
+    display: block;
+        color: white;
+        text-align: center;
+        padding: 15px 15px;
 }
 
-ul li {
-    display: inline;
+li a:hover {
+    background-color: #111;
 }
