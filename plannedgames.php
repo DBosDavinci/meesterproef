@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC>
 <HTML>
    <HEAD>
-   <?php include_once("navbar.php"); ?>
    <link rel="stylesheet" href="style.css">
    </HEAD>
    <BODY>
@@ -19,35 +18,39 @@
 
             $pdo = require "config.php";
 
-            $sql = "SELECT * FROM plannedgames ORDER BY time";
+            $sql = "SELECT games.name AS game_name, plannedgames.time, games.play_minutes, users.name AS host_name, plannedgames.id
+                    FROM plannedgames
+                    INNER JOIN games ON plannedgames.gameid = games.id
+                    LEFT JOIN plannedusers ON plannedgames.id = plannedusers.plannedgameid
+                    LEFT JOIN users ON plannedusers.userid = users.id
+                    ORDER BY plannedgames.time";
 
-            foreach ($conn->query($sql) as $row) {
-                $gameid = $row["gameid"];
-                $sql2 = "SELECT * FROM games WHERE id = $gameid";
-                $result = $conn->query($sql2);
-                $results = $result->fetch(PDO::FETCH_ASSOC);?>
+            $stmt = $conn->query($sql);
+            $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            foreach ($games as $row) {?>
                 <tr>
-                    <td class="naam"> <?= $results['name'];?> </td>
+                    <td class="naam"> <?= $row['game_name'];?> </td>
                     <td> <?= $row['time'];?> </td>
-                    <td> <?= $results['play_minutes'] . " minuten";?> </td>
-                    <td> <?php $gamingid = $row["id"];
-                    $sql3 = "SELECT * FROM plannedusers WHERE plannedgameid = $gamingid;";
-                    foreach ($conn->query($sql3) as $test) {
-                        if ($test['is_host']) {
-                            $userid = $test['userid'];
-                            $sql4 = "SELECT * FROM users WHERE id = $userid";
-                            $resulting = $conn->query($sql4);
-                            $resultss = $resulting->fetch(PDO::FETCH_ASSOC);
-                            echo $resultss['name'];
-                        }
-                    }?> 
-                    </td>
-                    <td><a href="editgame.php?id=<?=$row['id']?>">edit</a></td>
-                    <td><a href="removegame.php?id=<?=$row['id']?>">remove</a></td>
+                    <td> <?= $row['play_minutes'] . " minuten";?> </td>
+                    <td> <?= $row['host_name']; ?></td>
+                    <td><a href="details.php?id=<?= $row['id']?>">Details</a></td>
+                    <td><a href="edit.php?id=<?= $row['id']?>">Edit</a></td>
+                    <td id="delete"><p onclick="confirmdelete(<?= $row['id']?>)">Delete</p></td>
                 </tr>
 
             <?php } ?>
         </table>
+
+        <script>
+            function confirmdelete(id) {
+                let text = "Do you really want to delete this?";
+              if (confirm(text) == true) {
+                window.location.href = `delete.php?id=${id}`;
+              } else {
+                return;
+              }
+            }
+        </script>
    </BODY>
 </HTML>

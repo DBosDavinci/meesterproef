@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 02, 2022 at 10:58 AM
+-- Generation Time: Sep 22, 2023 at 01:54 PM
 -- Server version: 8.0.29
 -- PHP Version: 7.4.29
 
@@ -90,7 +90,12 @@ CREATE TABLE `plannedgames` (
 --
 
 INSERT INTO `plannedgames` (`id`, `gameid`, `time`) VALUES
-(33, 7, '2022-11-16 13:24:00');
+(33, 7, '2022-11-16 13:24:00'),
+(34, 11, '2022-11-10 11:19:00'),
+(35, 9, '2023-09-09 18:14:00'),
+(36, 25, '2023-09-07 15:18:00'),
+(37, 12, '2023-08-29 15:00:00'),
+(38, 8, '2023-09-05 17:04:00');
 
 -- --------------------------------------------------------
 
@@ -111,7 +116,17 @@ CREATE TABLE `plannedusers` (
 INSERT INTO `plannedusers` (`plannedgameid`, `userid`, `is_host`) VALUES
 (33, 5, 0),
 (33, 4, 0),
-(33, 3, 1);
+(33, 3, 1),
+(34, 3, 1),
+(34, 4, 0),
+(35, 3, 0),
+(35, 3, 0),
+(36, 5, 0),
+(36, 4, 1),
+(37, 5, 0),
+(37, 4, 1),
+(38, 3, 1),
+(38, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -177,7 +192,7 @@ ALTER TABLE `games`
 -- AUTO_INCREMENT for table `plannedgames`
 --
 ALTER TABLE `plannedgames`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `users`
